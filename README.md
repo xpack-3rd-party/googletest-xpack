@@ -1,5 +1,7 @@
 # A source xPack with Google Test
 
+NOTE: This project is work in progress and has no xPack releases yet!
+
 This project provides the **Google Test** libraries as an xPack dependency.
 
 The project is hosted on GitHub as
