@@ -1,3 +1,115 @@
+# A source xPack with Arm CMSIS Core-M
+
+This project provides the CMSIS Core-M headers as an xPack dependency.
+
+The project is hosted on GitHub as
+[xpack-3rd-party/googletest-xpack](https://github.com/xpack-3rd-party/googletest-xpack).
+
+## Maintainer info
+
+This page is addressed to developers who plan to include this package
+into their own projects.
+
+For maintainer infos, please see the
+[README-MAINTAINER](README-MAINTAINER.md) file.
+
+## Install
+
+As a source xPacks, the easiest way to add it to a project is via **xpm**,
+but it can also be used as any Git project, for example as a submodule.
+
+### Prerequisites
+
+A recent [xpm](https://xpack.github.io/xpm/),
+which is a portable [Node.js](https://nodejs.org/) command line application.
+
+For details please follow the instructions in the
+[install](https://xpack.github.io/install/) page.
+
+### xpm
+
+This package is available from npmjs.com as
+[`@xpack-3rd-party/googletest`](https://www.npmjs.com/package/@xpack-3rd-party/googletest)
+from the `npmjs.com` registry:
+
+```sh
+cd my-project
+xpm init # Unless a package.json is already present
+
+xpm install @xpack-3rd-party/googletest@latest
+```
+
+Note: work in progress.
+
+### Git submodule
+
+If, for any reason, **xpm** is not available, the next recommended
+solution is to link it as a Git submodule below an `xpacks` folder.
+
+```sh
+cd my-project
+git init # Unless already a Git project
+mkdir -p xpacks
+
+git submodule add https://github.com/xpack-3rd-party/googletest-xpack.git \
+  xpacks/xpack-3rd-party-googletest
+```
+
+## Branches
+
+There are three active branches:
+
+- `master`, follows the original Arm `master`
+- `xpack`, with the latest stable version (default)
+- `xpack-develop`, with the current development version
+
+All development is done in the `xpack-develop` branch, and contributions via
+Pull Requests should be directed to this branch.
+
+When new releases are published, the `xpack-develop` branch is merged
+into `xpack`.
+
+## User info
+
+This package provides only C headers.
+
+### Build & integration info
+
+#### Include folders
+
+- `CMSIS/Core/Include`
+
+The header files can then be included in user projects with statements like:
+
+```c++
+#include <core_cm4.h>
+```
+
+#### Preprocessor definitions
+
+- none required
+
+### Known problems
+
+- none
+
+### Tests
+
+TBD
+
+## License
+
+The original content is released under the
+[MIT License](https://opensource.org/licenses/MIT/),
+with all rights reserved to
+[Liviu Ionescu](https://github.com/ilg-ul/).
+
+The Google content is provided under the terms of the BSD-3-Clause License.
+
+---
+
+The original README content follows.
+
 # GoogleTest
 
 ### Announcements
