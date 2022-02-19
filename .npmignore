@@ -1,0 +1,9 @@
+.github/
+ci/
+docs/
+.clang-format
+BUILD.bazel
+CONTRIBUTING.md
+WORKSPACE
+
+*.tgz
