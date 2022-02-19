@@ -82,3 +82,16 @@ googlemock/gtest
 /CMakeCache.txt
 /ALL_BUILD.vcxproj.filters
 /ALL_BUILD.vcxproj
+
+# xpm
+xpacks/
+build/
+*.tgz
+
+# Windows
+Thumbs.db
+
+# macOS
+.DS_Store
+
+# end
