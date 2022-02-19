@@ -1,6 +1,6 @@
-# A source xPack with Arm CMSIS Core-M
+# A source xPack with Google Test
 
-This project provides the CMSIS Core-M headers as an xPack dependency.
+This project provides the **Google Test** libraries as an xPack dependency.
 
 The project is hosted on GitHub as
 [xpack-3rd-party/googletest-xpack](https://github.com/xpack-3rd-party/googletest-xpack).
@@ -77,12 +77,12 @@ This package provides only C headers.
 
 #### Include folders
 
-- `CMSIS/Core/Include`
+- TBD
 
 The header files can then be included in user projects with statements like:
 
 ```c++
-#include <core_cm4.h>
+#include <XXX.h>
 ```
 
 #### Preprocessor definitions
