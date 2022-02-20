@@ -15,22 +15,22 @@ To clone the stable branch (`xpack`), run the following commands in a
 terminal (on Windows use the _Git Bash_ console):
 
 ```sh
-rm -rf ~/Work/utils-lists-xpack.git && \
+rm -rf ~/Work/googletest-xpack.git && \
 mkdir -p ~/Work && \
 git clone \
   https://github.com/xpack-3rd-party/googletest-xpack.git \
-  ~/Work/utils-lists-xpack.git
+  ~/Work/googletest-xpack.git
 ```
 
 For development purposes, clone the `xpack-develop` branch:
 
 ```sh
-rm -rf ~/Work/utils-lists-xpack.git && \
+rm -rf ~/Work/googletest-xpack.git && \
 mkdir -p ~/Work && \
 git clone \
   --branch xpack-develop \
   https://github.com/xpack-3rd-party/googletest-xpack.git \
-  ~/Work/utils-lists-xpack.git
+  ~/Work/googletest-xpack.git
 ```
 
 ## Prerequisites
@@ -74,7 +74,7 @@ The project includes unit tests.
 To run them, run:
 
 ```sh
-cd utils-lists-xpack.git
+cd googletest-xpack.git
 xpm run install-all
 xpm run test
 ```
