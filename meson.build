@@ -61,6 +61,7 @@ elif c_compiler.get_id().contains('clang')
     '-Wno-covered-switch-default',
     '-Wno-used-but-marked-unused',
     '-Wno-extra-semi-stmt',
+    '-Wno-disabled-macro-expansion',
   ]
 endif
 

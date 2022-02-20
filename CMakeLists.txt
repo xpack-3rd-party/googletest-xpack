@@ -81,6 +81,7 @@ target_compile_options(xpack-3rd-party-googletest-static PUBLIC
   $<$<C_COMPILER_ID:Clang,AppleClang>:-Wno-covered-switch-default>
   $<$<C_COMPILER_ID:Clang,AppleClang>:-Wno-used-but-marked-unused>
   $<$<C_COMPILER_ID:Clang,AppleClang>:-Wno-extra-semi-stmt>
+  $<$<C_COMPILER_ID:Clang,AppleClang>:-Wno-disabled-macro-expansion>
 
   $<$<COMPILE_LANGUAGE:CXX>:-Wno-zero-as-null-pointer-constant>
   $<$<COMPILE_LANGUAGE:CXX>:-Wno-suggest-override>
