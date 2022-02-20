@@ -1,9 +1,21 @@
 .github/
+.vscode/
+build/
 ci/
 docs/
+tests/
+googlemock/docs/
+googlemock/test/
+googletest/cmake/
+googletest/docs/
+googletest/samples/
+googletest/test/
+googlemock/cmake/
+
 .clang-format
 BUILD.bazel
 CONTRIBUTING.md
 WORKSPACE
+README-*.md
 
 *.tgz
