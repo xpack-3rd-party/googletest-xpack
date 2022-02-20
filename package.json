@@ -337,7 +337,7 @@
           "prepare": "{{ properties.commandCMakePrepareWithToolchain }}",
           "build": [
             "{{ properties.commandCMakeReconfigure }}",
-            "{{ properties.commandCMakeBuildVerbose }}"
+            "{{ properties.commandCMakeBuild }}"
           ],
           "test": "{{ properties.commandCMakePerformTests }}",
           "clean": "{{ properties.commandCMakeClean }}"
