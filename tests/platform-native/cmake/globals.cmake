@@ -40,6 +40,11 @@ else()
     ${platform_common_options}
   )
 
+  add_compile_definitions(
+    GTEST_HAS_PTHREAD=0
+    _POSIX_C_SOURCE=200809L
+  )
+
   # When `-flto` is used, the compile options must be passed to the linker too.
   add_link_options(
     ${platform_common_options}

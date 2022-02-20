@@ -55,9 +55,7 @@ add_compile_options(
 )
 
 add_compile_definitions(
-  # GTEST_HAS_PTHREAD=0
-  # GTEST_HAS_STREAM_REDIRECTION=0
-  # GTEST_OS_ARM_SEMIHOSTING=1
+  GTEST_HAS_PTHREAD=0
   _POSIX_C_SOURCE=200809L
 )
 

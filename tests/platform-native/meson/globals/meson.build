@@ -20,6 +20,8 @@ message('Including platform-native global definitions...')
 # -----------------------------------------------------------------------------
 
 platform_common_options = [
+  '-DGTEST_HAS_PTHREAD=0',
+  '-D_POSIX_C_SOURCE=200809L',
 ]
 
 if get_option('buildtype') == 'release' or get_option('buildtype') == 'minsize' or get_option('buildtype') == 'debugoptimized'

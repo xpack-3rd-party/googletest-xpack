@@ -27,6 +27,8 @@ platform_common_flags = [
   # '-flto' # fails with undefined __assert_func, _write, etc.
 
   '-fno-move-loop-invariants',
+
+  '-DGTEST_HAS_PTHREAD=0',
   '-D_POSIX_C_SOURCE=200809L',
 ]
 
