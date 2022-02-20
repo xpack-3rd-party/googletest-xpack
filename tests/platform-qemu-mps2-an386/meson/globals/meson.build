@@ -19,7 +19,7 @@ message('Including platform-qemu-mps2-an386 globals...')
 
 # -----------------------------------------------------------------------------
 
-platform_common_flags = [
+platform_common_options = [
   '-mcpu=cortex-m4',
   '-mthumb',
   '-mfloat-abi=hard',
@@ -32,47 +32,47 @@ platform_common_flags = [
   '-D_POSIX_C_SOURCE=200809L',
 ]
 
-platform_common_c_extra_flags = [
+platform_common_c_extra_options = [
 ]
 
-platform_common_cpp_extra_flags = [
+platform_common_cpp_extra_options = [
   '-fno-rtti',
   '-fno-use-cxa-atexit',
   '-fno-threadsafe-statics',
 ]
 
 if get_option('buildtype').contains('debug')
-  platform_common_flags += [
+  platform_common_options += [
     '-fno-omit-frame-pointer'
   ]
 endif
 
 add_global_arguments(
-  platform_common_flags,
+  platform_common_options,
 
   language: [ 'c', 'cpp' ]
 )
 
 add_global_arguments(
-  platform_common_c_extra_flags,
+  platform_common_c_extra_options,
 
   language: [ 'c' ]
 )
 
 add_global_arguments(
-  platform_common_cpp_extra_flags,
+  platform_common_cpp_extra_options,
 
   language: [ 'cpp' ]
 )
 
 add_global_link_arguments(
-  platform_common_flags,
+  platform_common_options,
 
   language: [ 'c', 'cpp' ]
 )
 
 add_global_link_arguments(
-  platform_common_cpp_extra_flags,
+  platform_common_cpp_extra_options,
 
   language: [ 'cpp' ]
 )
