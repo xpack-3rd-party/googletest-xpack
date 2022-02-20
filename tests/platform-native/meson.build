@@ -38,7 +38,9 @@ message('> platform_native_dependency')
 
 # =============================================================================
 
-linker_options = []
+linker_options = [
+  # '-v',
+]
 
 # https://mesonbuild.com/Reference-tables.html#operating-system-names
 if build_machine.system() == 'darwin'
@@ -48,7 +50,8 @@ if build_machine.system() == 'darwin'
   ]
 elif build_machine.system() == 'linux'
   linker_options += [
-    '-Wl,--gc-sections'
+    '-static-libstdc++',
+    '-Wl,--gc-sections',
   ]
   if c_compiler.get_id().contains('clang')
     linker_options += [
