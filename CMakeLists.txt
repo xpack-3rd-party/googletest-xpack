@@ -42,6 +42,7 @@ add_library(xpack-3rd-party-googletest-static STATIC)
 # -----------------------------------------------------------------------------
 # Target settings.
 
+#  Google Test.
 target_include_directories(xpack-3rd-party-googletest-static PUBLIC
   "googletest/include"
   "googletest"
@@ -49,6 +50,16 @@ target_include_directories(xpack-3rd-party-googletest-static PUBLIC
 
 target_sources(xpack-3rd-party-googletest-static PRIVATE
   "googletest/src/gtest-all.cc"
+)
+
+# Google Mock.
+target_sources(xpack-3rd-party-googletest-static PRIVATE
+  "googlemock/src/gmock-all.cc"
+)
+
+target_include_directories(xpack-3rd-party-googletest-static PUBLIC
+  "googlemock/include"
+  "googlemock"
 )
 
 target_compile_definitions(xpack-3rd-party-googletest-static PRIVATE
@@ -71,6 +82,8 @@ target_compile_options(xpack-3rd-party-googletest-static PUBLIC
   $<$<C_COMPILER_ID:GNU>:-Wno-conversion>
   $<$<C_COMPILER_ID:GNU>:-Wno-suggest-final-methods>
   $<$<C_COMPILER_ID:GNU>:-Wno-suggest-final-types>
+  $<$<C_COMPILER_ID:GNU>:-Wno-sign-conversion>
+  $<$<C_COMPILER_ID:GNU>:-Wno-missing-declarations>
 
   $<$<C_COMPILER_ID:Clang,AppleClang>:-Wno-c++98-compat>
   $<$<C_COMPILER_ID:Clang,AppleClang>:-Wno-c++98-compat-pedantic>
@@ -82,6 +95,8 @@ target_compile_options(xpack-3rd-party-googletest-static PUBLIC
   $<$<C_COMPILER_ID:Clang,AppleClang>:-Wno-used-but-marked-unused>
   $<$<C_COMPILER_ID:Clang,AppleClang>:-Wno-extra-semi-stmt>
   $<$<C_COMPILER_ID:Clang,AppleClang>:-Wno-disabled-macro-expansion>
+  $<$<C_COMPILER_ID:Clang,AppleClang>:-Wno-comma>
+  $<$<C_COMPILER_ID:Clang,AppleClang>:-Wno-missing-prototypes>
 
   $<$<COMPILE_LANGUAGE:CXX>:-Wno-zero-as-null-pointer-constant>
   $<$<COMPILE_LANGUAGE:CXX>:-Wno-suggest-override>
