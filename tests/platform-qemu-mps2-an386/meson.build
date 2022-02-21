@@ -24,25 +24,31 @@ xpack_create_hex = false
 # -----------------------------------------------------------------------------
 # Define the platform library.
 
+xpack_common_args = []
+xpack_include_directories = []
+xpack_sources = []
+
+xpack_include_directories += [
+  'include-platform',
+]
+
 # https://mesonbuild.com/Reference-manual_functions.html#declare_dependency
 platform_qemu_mps2_an386_dependency = declare_dependency(
-  include_directories: include_directories(
-    'include-platform',
-  ),
-  sources: files(
-    # None.
-  ),
-  compile_args: [
-    # None.
-  ],
+  include_directories: include_directories(xpack_include_directories),
+  sources: files(xpack_sources),
+  compile_args: xpack_common_args,
   dependencies: [
     micro_os_plus_devices_qemu_cortexm_dependency,
   ]
 )
 
-message('+ -I tests/platform-qemu-mps2-an386/include-platform')
-message('+ tests/platform-qemu-mps2-an386/src/initialize-hardware.cpp')
-message('+ tests/platform-qemu-mps2-an386/src/interrupts-handlers.cpp')
+foreach xn : xpack_include_directories
+  message('+ -I ' + xn)
+endforeach
+# Note: depenedencies compile_args not shown.
+foreach xn : xpack_sources + xpack_common_args
+  message('+ ' + xn)
+endforeach
 message('> platform_qemu_mps2_an386_dependency')
 
 # =============================================================================
@@ -57,14 +63,32 @@ test_names = [ 'sample-test' ]
 
 foreach name : test_names
 
-  compile_definitions = []
+  xpack_common_args = []
+  xpack_c_args = []
+  xpack_cpp_args = []
+  xpack_include_directories = []
+  xpack_sources = []
+  xpack_dependencies = []
+  xpack_link_args = []
+  xpack_link_with = []
 
-  libs_dependencies = [
-    # Tested library.
-    xpack_3rd_party_google_test_dependency,
+  xpack_include_directories += [
+    '../include',
   ]
 
-  libs_dependencies += [
+  xpack_sources += [
+    '../src/' + name + '.cpp',
+  ]
+
+  xpack_c_args += xpack_3rd_party_googletest_dependency_c_args
+  xpack_cpp_args += xpack_3rd_party_googletest_dependency_cpp_args
+
+  xpack_dependencies += [
+    # Tested library.
+    xpack_3rd_party_googletest_dependency,
+  ]
+
+  xpack_dependencies += [
     # Platform specific dependencies.
     platform_qemu_mps2_an386_dependency, # bring device & architecture too.
 
@@ -74,37 +98,50 @@ foreach name : test_names
     micro_os_plus_startup_dependency,
   ]
 
+  xpack_link_args += [
+    '-nostartfiles',
+
+    # Ensure the linker will keep the interrupt vectors which otherwise
+    # are not refered from anywhere.
+    '-u_interrupt_vectors',
+
+    '-Wl,--gc-sections',
+
+    '-Wl,-Map,'+ name + '-map.txt',
+    # '-v',
+  ]
+
+  xpack_link_args += [
+    # Path are relative to the build folder.
+    '-Txpacks/micro-os-plus-devices-qemu-cortexm/linker-scripts/mem.ld',
+    '-Txpacks/micro-os-plus-architecture-cortexm/linker-scripts/sections.ld',
+  ]
+
+  xpack_link_with += [
+    # Tested library.
+    xpack_3rd_party_googletest_static,
+  ]
+
   # https://mesonbuild.com/Reference-manual.html#executable
   exe = executable(
     name,
-    include_directories: include_directories(
-      '../include',
-      # 'include-config' # was added globally
-    ),
-    sources: files(
-      '../src/' + name + '.cpp'
-    ),
-    c_args: compile_definitions + xpack_3rd_party_google_test_dependency_c_args,
-    cpp_args: compile_definitions + xpack_3rd_party_google_test_dependency_cpp_args,
-    dependencies: libs_dependencies,
-    link_args: [
-      '-nostartfiles',
-      # Ensure the linker will keep the interrupt vectors which otherwise
-      # are not refered from anywhere.
-      '-u_interrupt_vectors',
-      '-Wl,--gc-sections',
-      '-Wl,-Map,'+ name + '-map.txt',
-      # '-v',
-      ] + xpack_linker_scripts,
-    link_with: [
-      # Tested library.
-      xpack_3rd_party_google_test_static,
-    ],
+    include_directories: include_directories(xpack_include_directories),
+    sources: files(xpack_sources),
+    c_args: xpack_common_args + xpack_c_args,
+    cpp_args: xpack_common_args + xpack_cpp_args,
+    dependencies: xpack_dependencies,
+    link_args: xpack_link_args,
+    link_with: xpack_link_with,
     name_suffix: 'elf',
   )
 
-  message('A+ -I tests/include')
-  message('A+ tests/src/' + name + '.cpp')
+  foreach xn : xpack_include_directories
+    message('A+ -I ' + xn)
+  endforeach
+  # Note: depenedencies compile_args not shown.
+  foreach xn : xpack_sources + xpack_common_args + xpack_c_args + xpack_cpp_args + xpack_link_args
+    message('A+ ' + xn)
+  endforeach
   message('A> ' + name)
 
   # Leave the result in a variable with the test name.

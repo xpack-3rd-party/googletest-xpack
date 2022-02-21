@@ -19,7 +19,11 @@ message('Including platform-native global definitions...')
 
 # -----------------------------------------------------------------------------
 
-platform_common_options = [
+xpack_platform_common_args = []
+xpack_platform_common_c_args = []
+xpack_platform_common_cpp_args = []
+
+xpack_platform_common_args += [
   '-DGTEST_HAS_PTHREAD=0',
   '-D_POSIX_C_SOURCE=200809L',
 ]
@@ -33,23 +37,36 @@ if get_option('buildtype') == 'release' or get_option('buildtype') == 'minsize' 
     # clang-12: error: linker command failed due to signal (use -v to see invocation)
   else
     # meson-out/sample-test.p/.._src_sample-test.cpp.o: file not recognized: file format not recognized
-    platform_common_options += [
+    xpack_platform_common_args += [
       '-flto',
     ]
   endif
 endif
 
 add_global_arguments(
-  platform_common_options,
+  xpack_platform_common_args + xpack_platform_common_c_args,
 
-  language: [ 'c', 'cpp' ]
+  language: [ 'c' ]
+)
+
+add_global_arguments(
+  xpack_platform_common_args + xpack_platform_common_cpp_args,
+
+  language: [ 'cpp' ]
 )
 
 # When `-flto` is used, the compile options must be passed to the linker too.
 add_global_link_arguments(
-  platform_common_options,
+  xpack_platform_common_args + xpack_platform_common_c_args,
 
-  language: [ 'c', 'cpp' ]
+  language: [ 'c' ]
+)
+
+# When `-flto` is used, the compile options must be passed to the linker too.
+add_global_link_arguments(
+  xpack_platform_common_args + xpack_platform_common_cpp_args,
+
+  language: [ 'cpp' ]
 )
 
 # -----------------------------------------------------------------------------

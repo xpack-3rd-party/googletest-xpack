@@ -19,7 +19,17 @@ message('Including platform-qemu-mps2-an386 globals...')
 
 # -----------------------------------------------------------------------------
 
-platform_common_options = [
+xpack_platform_common_args = []
+xpack_platform_common_c_args = []
+xpack_platform_common_cpp_args = []
+
+# Compiler definitions must passed as options.
+xpack_platform_common_args += [
+  '-DGTEST_HAS_PTHREAD=0',
+  '-D_POSIX_C_SOURCE=200809L',
+]
+
+xpack_platform_common_args += [
   '-mcpu=cortex-m4',
   '-mthumb',
   '-mfloat-abi=hard',
@@ -27,61 +37,43 @@ platform_common_options = [
   # '-flto' # fails with undefined __assert_func, _write, etc.
 
   '-fno-move-loop-invariants',
-
-  '-DGTEST_HAS_PTHREAD=0',
-  '-D_POSIX_C_SOURCE=200809L',
 ]
 
-platform_common_c_extra_options = [
-]
+if get_option('buildtype').contains('debug')
+  xpack_platform_common_args += [
+    '-fno-omit-frame-pointer'
+  ]
+endif
 
-platform_common_cpp_extra_options = [
+xpack_platform_common_cpp_args += [
   '-fno-rtti',
   '-fno-use-cxa-atexit',
   '-fno-threadsafe-statics',
 ]
 
-if get_option('buildtype').contains('debug')
-  platform_common_options += [
-    '-fno-omit-frame-pointer'
-  ]
-endif
-
 add_global_arguments(
-  platform_common_options,
-
-  language: [ 'c', 'cpp' ]
-)
-
-add_global_arguments(
-  platform_common_c_extra_options,
+  xpack_platform_common_args + xpack_platform_common_c_args,
 
   language: [ 'c' ]
 )
 
 add_global_arguments(
-  platform_common_cpp_extra_options,
+  xpack_platform_common_args + xpack_platform_common_cpp_args,
 
   language: [ 'cpp' ]
 )
 
 add_global_link_arguments(
-  platform_common_options,
+  xpack_platform_common_args + xpack_platform_common_c_args,
 
-  language: [ 'c', 'cpp' ]
+  language: [ 'c' ]
 )
 
 add_global_link_arguments(
-  platform_common_cpp_extra_options,
+  xpack_platform_common_args + xpack_platform_common_cpp_args,
 
   language: [ 'cpp' ]
 )
-
-xpack_linker_scripts = [
-    # Path are relative to the build folder.
-  '-Txpacks/micro-os-plus-devices-qemu-cortexm/linker-scripts/mem.ld',
-  '-Txpacks/micro-os-plus-architecture-cortexm/linker-scripts/sections.ld',
-]
 
 # The base folder is root, via the `top` link.
 xpack_dependencies = [
