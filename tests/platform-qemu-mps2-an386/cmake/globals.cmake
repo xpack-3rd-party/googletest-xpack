@@ -63,20 +63,4 @@ add_link_options(
     ${platform_common_options}
 )
 
-add_link_options(
-    -nostartfiles
-    # nano has no exceptions.
-    # -specs=nano.specs
-    -Wl,--gc-sections
-
-    # Force the linker to keep the interrupt vectors which otherwise
-    # are not refered from anywhere.
-    -u_interrupt_vectors
-
-    # Including files from other packages is not very nice, but functional.
-    # Use absolute paths, otherwise set -L.
-    -T${CMAKE_BINARY_DIR}/xpacks/micro-os-plus-devices-qemu-cortexm/linker-scripts/mem.ld
-    -T${CMAKE_BINARY_DIR}/xpacks/micro-os-plus-architecture-cortexm/linker-scripts/sections.ld
-)
-
 # -----------------------------------------------------------------------------
