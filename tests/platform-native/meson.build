@@ -39,13 +39,13 @@ message('> platform_native_dependency')
 # =============================================================================
 
 linker_options = [
-  '-static-libstdc++',
   # '-v',
 ]
 
 if c_compiler.get_id() == 'gcc'
   linker_options += [
     '-static-libgcc',
+    '-static-libstdc++',
   ]
 endif
 
