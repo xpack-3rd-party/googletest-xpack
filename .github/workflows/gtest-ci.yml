@@ -2,7 +2,11 @@ name: ci
 
 on:
   push:
+    paths-ignore:
+    - '**'
   pull_request:
+    paths-ignore:
+    - '**'
 
 jobs:
   Linux:
