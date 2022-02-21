@@ -31,13 +31,13 @@ if("${CMAKE_C_COMPILER_ID}" MATCHES "Clang" AND "${CMAKE_SYSTEM_NAME}" STREQUAL 
   # Alternate linker was not effective.
   message(STATUS "Clang Linux arm - skip -flto")
 else()
-  set(platform_common_options
+  set(xpack_platform_common_options
     $<$<CONFIG:Release>:-flto>
     $<$<CONFIG:MinSizeRel>:-flto>
   )
 
   add_compile_options(
-    ${platform_common_options}
+    ${xpack_platform_common_options}
   )
 
   add_compile_definitions(
@@ -47,7 +47,7 @@ else()
 
   # When `-flto` is used, the compile options must be passed to the linker too.
   add_link_options(
-    ${platform_common_options}
+    ${xpack_platform_common_options}
   )
 endif()
 

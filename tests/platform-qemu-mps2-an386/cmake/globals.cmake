@@ -24,7 +24,7 @@ set(xpack_device_compile_definition "DEVICE_QEMU_CORTEX_M4")
 # add_compile_definitions()
 # include_directories()
 
-set(platform_common_options
+set(xpack_platform_common_options
 
   -mcpu=cortex-m4
   -mthumb
@@ -51,7 +51,7 @@ set(platform_common_options
 )
 
 add_compile_options(
-    ${platform_common_options}
+  ${xpack_platform_common_options}
 )
 
 add_compile_definitions(
@@ -59,8 +59,9 @@ add_compile_definitions(
   _POSIX_C_SOURCE=200809L
 )
 
+# When `-flto` is used, the compile options must be passed to the linker too.
 add_link_options(
-    ${platform_common_options}
+  ${xpack_platform_common_options}
 )
 
 # -----------------------------------------------------------------------------
