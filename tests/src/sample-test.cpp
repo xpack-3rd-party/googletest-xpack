@@ -30,11 +30,89 @@
 #endif
 // #pragma GCC diagnostic ignored "-Waggregate-return"
 
+// ----------------------------------------------------------------------------
+
+// Simple examples of functions to be tested.
+static int
+compute_one (void)
+{
+  return 1;
+}
+
+static const char*
+compute_aaa (void)
+{
+  return "aaa";
+}
+
+
+TEST(Suite, Case1) {
+  EXPECT_EQ(1, compute_one());
+  EXPECT_STREQ("aaa", compute_aaa());
+}
+
+static bool
+compute_condition (void)
+{
+  return true;
+}
+
+TEST(Suite, Case2) {
+  EXPECT_TRUE(compute_condition());
+}
+
+// ----------------------------------------------------------------------------
+
+class MyFixture : public ::testing::Test {
+ protected:
+  void SetUp() override {
+    one = 1;
+    aaa = const_cast<char*>("aaa");
+    printf("%s\n", __PRETTY_FUNCTION__);
+  }
+
+  void TearDown() override {
+    printf("%s\n", __PRETTY_FUNCTION__);
+  }
+
+  int one;
+  char* aaa;
+};
+
+TEST_F(MyFixture, CaseOne) {
+  EXPECT_EQ(1, one);
+}
+
+TEST_F(MyFixture, CaseTwo) {
+  EXPECT_STREQ("aaa", aaa);
+}
+
+// ----------------------------------------------------------------------------
+
+class MyEnvironment : public ::testing::Environment {
+ public:
+  ~MyEnvironment() override {}
+
+  // Override this to define how to set up the environment.
+  void SetUp() override {
+    printf("%s\n", __PRETTY_FUNCTION__);
+  }
+
+  // Override this to define how to tear down the environment.
+  void TearDown() override {
+    printf("%s\n", __PRETTY_FUNCTION__);
+  }
+};
+
 int
 main ([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
 {
   printf("Running main() from %s\n", __FILE__);
   testing::InitGoogleTest(&argc, argv);
+
+  [[maybe_unused]] testing::Environment* const meEnv =
+    testing::AddGlobalTestEnvironment(new MyEnvironment);
+
   return RUN_ALL_TESTS();
 }
 
