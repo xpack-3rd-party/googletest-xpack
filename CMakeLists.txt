@@ -17,7 +17,7 @@
 #
 # The result is an interface library that can be added to the linker with:
 #
-# `target_link_libraries(your-target PUBLIC xpack-3rd-party::googletest)`
+# `target_link_libraries(your-target PRIVATE xpack-3rd-party::googletest)`
 
 # -----------------------------------------------------------------------------
 ## Preamble ##
