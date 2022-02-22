@@ -74,9 +74,9 @@ The project includes unit tests.
 To run them, run:
 
 ```sh
-cd googletest-xpack.git
+cd ~/Work/googletest-xpack.git
 xpm run install-all
-xpm run test
+xpm run test-all
 ```
 
 ## Continuous Integration
