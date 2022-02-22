@@ -1,7 +1,5 @@
 # A source xPack with Google Test
 
-NOTE: This project is work in progress and has no xPack releases yet!
-
 This project provides the **Google Test** libraries as an xPack dependency.
 
 The project is hosted on GitHub as
@@ -41,8 +39,6 @@ xpm init # Unless a package.json is already present
 xpm install @xpack-3rd-party/googletest@latest
 ```
 
-Note: work in progress.
-
 ### Git submodule
 
 If, for any reason, **xpm** is not available, the next recommended
@@ -66,30 +62,156 @@ There are three active branches:
 - `xpack-develop`, with the current development version
 
 All development is done in the `xpack-develop` branch, and contributions via
-Pull Requests should be directed to this branch.
+Pull Requests should be directed to this branch. (Only contributions
+related to the xPack integration are accepted, functional contributions
+should be addressed to the upstream project.)
 
 When new releases are published, the `xpack-develop` branch is merged
 into `xpack`.
 
-## User info
+## Developer info
 
-This package provides only C headers.
+### Overview
+
+This package provides the full Google Test & Mock code, and the
+configuration files required to integrate it into
+CMake and meson projects, by building a static library.
 
 ### Build & integration info
 
+The project is written in C++, and is quite large. It can be built
+on top of an Arm semihosting environment, but it takes about 400-500KB
+of code space.
+
 #### Include folders
 
-- TBD
+The following folders should be used during the build:
+
+- `googletest/include`
+- `googlemock/include`
 
 The header files can then be included in user projects with statements like:
 
 ```c++
-#include <XXX.h>
+#include "gtest/gtest.h"
+#include "gmock/gmock.h"
 ```
+
+#### Source folders
+
+- `googletest`
+- `googlemock`
+
+The source file to be added to user projects are:
+
+- `googletest/src/gtest-all.cc`
+- `googlemock/src/gmock-all.cc`
 
 #### Preprocessor definitions
 
-- none required
+There are several proprocessor definitions used to configure the build.
+
+For embedded platfroms, use:
+
+- `-DGTEST_HAS_PTHREAD=0`
+- `-D_POSIX_C_SOURCE=200809L`
+
+This will disable treading support in GTest and enable POSIX support in newlib.
+
+#### Compiler options
+
+- `-std=c++17` or higher for C++ sources
+- `-std=c11` for C sources
+
+#### C++ Namespaces
+
+- `testing`
+
+#### C++ Classes
+
+The project includes many classes; see the documentation for details.
+
+#### CMake
+
+To integrate the Google Test source library into a CMake application, add this
+folder to the build:
+
+```cmake
+add_subdirectory("xpacks/xpack-3rd-party-googletest")`
+```
+
+The result is a static library that can be added as an application
+dependency with:
+
+```cmake
+target_link_libraries(your-target PRIVATE
+  ...
+  xpack-3rd-party::googletest
+)
+```
+
+#### meson
+
+To integrate the Google Test source library into a meson application, add this
+folder to the build:
+
+```meson
+subdir('xpacks/xpack-3rd-party-googletest')
+```
+
+The result is a static library and a dependency object that can be added
+as an application dependency with:
+
+```meson
+exe = executable(
+  your-target,
+
+  c_args: xpack_3rd_party_googletest_dependency_c_args,
+  cpp_args: xpack_3rd_party_googletest_dependency_cpp_args,
+  dependencies: [
+    xpack-3rd-party-googletest_dependency,
+  ],
+  link_with: [
+    xpack_3rd_party_googletest_static,
+  ],
+)
+```
+
+### Example
+
+A simple example showing how to use the Google Test framework is
+presented below and is also available in
+[tests/src/sample-test.cpp](tests/src/sample-test.cpp).
+
+```c++
+#include "gtest/gtest.h"
+
+static int
+compute_one (void)
+{
+  return 1;
+}
+
+static const char*
+compute_aaa (void)
+{
+  return "aaa";
+}
+
+TEST(Suite, Case1) {
+  EXPECT_EQ(1, compute_one());
+  EXPECT_STREQ("aaa", compute_aaa());
+}
+
+int
+main ([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
+{
+  printf("Running main() from %s\n", __FILE__);
+  testing::InitGoogleTest(&argc, argv);
+
+  return RUN_ALL_TESTS();
+}
+```
 
 ### Known problems
 
@@ -97,7 +219,32 @@ The header files can then be included in user projects with statements like:
 
 ### Tests
 
-TBD
+The project is fully tested via GitHub
+[Actions](https://github.com/micro-os-plus/micro-test-plus-xpack/actions/)
+on each push.
+The test platforms are GNU/Linux, macOS and Windows, the tests are
+compiled with GCC, clang and arm-none-eabi-gcc and run natively or
+via QEMU.
+
+There are two set of tests, one that runs on every push, with a
+limited number of tests, and a set that is triggered manually,
+usually before releases, and runs all tests on all supported
+platforms.
+
+The full set can be run manually with the following commands:
+
+```sh
+cd ~Work/micro-test-plus-xpack.git
+
+xpm run install-all
+xpm run test-all
+```
+
+### Documentation
+
+Tho original documentation is available on-line:
+
+- <https://google.github.io/googletest/>
 
 ## License
 
