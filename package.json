@@ -1,7 +1,7 @@
 {
   "name": "@xpack-3rd-party/googletest",
   "version": "0.1.0",
-  "description": "A source xPack with Google Test",
+  "description": "A source library xPack with Google Test",
   "main": "",
   "scripts": {
     "npm-install": "npm install",
