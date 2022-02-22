@@ -50,12 +50,12 @@ CppStyle plug-in.
 - commit all changes
 - update versions in `README.md` and `README-MAINTAINER.md`
 - update `CHANGELOG.md`
-- commit with a message like _prepare v0.1.0_
+- commit with a message like _prepare v1.11.0-1_
 - `npm pack` and check the content of the archive, which should list
   only `package.json`, `README.md`, `LICENSE`, `CHANGELOG.md`,
   the sources and CMake/meson files;
   possibly adjust `.npmignore`
-- `npm version patch`, `npm version minor`, `npm version major`
+- `npm version v1.11.0-1`
 - push the `xpack-develop` branch to GitHub
 - the `postversion` npm script should also update tags via `git push origin --tags`
 - wait for the CI job to complete
@@ -99,5 +99,5 @@ When the package is considered stable:
 When the release is considered stable, promote it as `latest`:
 
 - `npm dist-tag ls @xpack-3rd-party/googletest`
-- `npm dist-tag add @xpack-3rd-party/googletest@0.1.0 latest`
+- `npm dist-tag add @xpack-3rd-party/googletest@1.11.0-1 latest`
 - `npm dist-tag ls @@xpack-3rd-party/googletest`

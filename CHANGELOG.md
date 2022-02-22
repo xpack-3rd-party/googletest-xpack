@@ -6,6 +6,10 @@ Please check
 [GitHub](https://github.com/xpack-3rd-party/googletest-xpack/issues/)
 and close existing issues and pull requests.
 
+## 2022-02-22
+
+- v1.11.0-1
+
 ## 2022-02-19
 
 - forked from <https://github.com/google/googletest.git>
