@@ -36,6 +36,7 @@ xpack_c_args = []
 xpack_cpp_args = []
 xpack_include_directories = []
 xpack_sources = []
+xpack_compile_definitions = []
 
 xpack_common_args += [
   '-Wno-padded',
@@ -114,8 +115,8 @@ xpack_3rd_party_googletest_static = static_library(
 
   include_directories: include_directories(xpack_include_directories),
   sources: files(xpack_sources),
-  c_args: xpack_common_args + xpack_c_args,
-  cpp_args: xpack_common_args + xpack_cpp_args,
+  c_args: xpack_common_args + xpack_c_args + xpack_compile_definitions,
+  cpp_args: xpack_common_args + xpack_cpp_args + xpack_compile_definitions,
 )
 
 foreach name : xpack_include_directories

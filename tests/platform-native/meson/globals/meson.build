@@ -22,8 +22,9 @@ message('Including platform-native global definitions...')
 xpack_platform_common_args = []
 xpack_platform_common_c_args = []
 xpack_platform_common_cpp_args = []
+xpack_platform_compile_definitions = []
 
-xpack_platform_common_args += [
+xpack_platform_compile_definitions += [
   '-DGTEST_HAS_PTHREAD=0',
   '-D_POSIX_C_SOURCE=200809L',
 ]
@@ -44,16 +45,20 @@ if get_option('buildtype') == 'release' or get_option('buildtype') == 'minsize' 
 endif
 
 add_global_arguments(
-  xpack_platform_common_args + xpack_platform_common_c_args,
+  xpack_platform_common_args + xpack_platform_common_c_args + xpack_platform_compile_definitions,
 
   language: [ 'c' ]
 )
 
 add_global_arguments(
-  xpack_platform_common_args + xpack_platform_common_cpp_args,
+  xpack_platform_common_args + xpack_platform_common_cpp_args + xpack_platform_compile_definitions,
 
   language: [ 'cpp' ]
 )
+
+foreach xn : xpack_platform_common_args + xpack_platform_common_c_args + xpack_platform_common_cpp_args + xpack_platform_compile_definitions
+  message('G+ ' + xn)
+endforeach
 
 # When `-flto` is used, the compile options must be passed to the linker too.
 add_global_link_arguments(

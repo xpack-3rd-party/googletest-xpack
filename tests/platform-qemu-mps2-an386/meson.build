@@ -27,6 +27,7 @@ xpack_create_hex = false
 xpack_common_args = []
 xpack_include_directories = []
 xpack_sources = []
+xpack_compile_definitions = []
 
 xpack_include_directories += [
   'include-platform',
@@ -36,7 +37,7 @@ xpack_include_directories += [
 platform_qemu_mps2_an386_dependency = declare_dependency(
   include_directories: include_directories(xpack_include_directories),
   sources: files(xpack_sources),
-  compile_args: xpack_common_args,
+  compile_args: xpack_common_args + xpack_compile_definitions,
   dependencies: [
     micro_os_plus_devices_qemu_cortexm_dependency,
   ]
@@ -46,7 +47,7 @@ foreach xn : xpack_include_directories
   message('+ -I ' + xn)
 endforeach
 # Note: depenedencies compile_args not shown.
-foreach xn : xpack_sources + xpack_common_args
+foreach xn : xpack_sources + xpack_common_args + xpack_compile_definitions
   message('+ ' + xn)
 endforeach
 message('> platform_qemu_mps2_an386_dependency')
@@ -68,6 +69,7 @@ foreach name : test_names
   xpack_cpp_args = []
   xpack_include_directories = []
   xpack_sources = []
+  xpack_compile_definitions = []
   xpack_dependencies = []
   xpack_link_args = []
   xpack_link_with = []
@@ -127,8 +129,8 @@ foreach name : test_names
     name,
     include_directories: include_directories(xpack_include_directories),
     sources: files(xpack_sources),
-    c_args: xpack_common_args + xpack_c_args,
-    cpp_args: xpack_common_args + xpack_cpp_args,
+    c_args: xpack_common_args + xpack_c_args + xpack_compile_definitions,
+    cpp_args: xpack_common_args + xpack_cpp_args + xpack_compile_definitions,
     dependencies: xpack_dependencies,
     link_args: xpack_link_args,
     link_with: xpack_link_with,
@@ -139,7 +141,7 @@ foreach name : test_names
     message('A+ -I ' + xn)
   endforeach
   # Note: depenedencies compile_args not shown.
-  foreach xn : xpack_sources + xpack_common_args + xpack_c_args + xpack_cpp_args + xpack_link_args
+  foreach xn : xpack_sources + xpack_common_args + xpack_c_args + xpack_cpp_args + xpack_compile_definitions + xpack_link_args
     message('A+ ' + xn)
   endforeach
   message('A> ' + name)

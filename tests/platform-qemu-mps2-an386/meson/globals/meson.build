@@ -22,9 +22,10 @@ message('Including platform-qemu-mps2-an386 globals...')
 xpack_platform_common_args = []
 xpack_platform_common_c_args = []
 xpack_platform_common_cpp_args = []
+xpack_platform_compile_definitions = []
 
 # Compiler definitions must passed as options.
-xpack_platform_common_args += [
+xpack_platform_compile_definitions += [
   '-DGTEST_HAS_PTHREAD=0',
   '-D_POSIX_C_SOURCE=200809L',
 ]
@@ -52,16 +53,20 @@ xpack_platform_common_cpp_args += [
 ]
 
 add_global_arguments(
-  xpack_platform_common_args + xpack_platform_common_c_args,
+  xpack_platform_common_args + xpack_platform_common_c_args + xpack_platform_compile_definitions,
 
   language: [ 'c' ]
 )
 
 add_global_arguments(
-  xpack_platform_common_args + xpack_platform_common_cpp_args,
+  xpack_platform_common_args + xpack_platform_common_cpp_args + xpack_platform_compile_definitions,
 
   language: [ 'cpp' ]
 )
+
+foreach xn : xpack_platform_common_args + xpack_platform_common_c_args + xpack_platform_common_cpp_args + xpack_platform_compile_definitions
+  message('G+ ' + xn)
+endforeach
 
 add_global_link_arguments(
   xpack_platform_common_args + xpack_platform_common_c_args,
