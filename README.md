@@ -1,6 +1,6 @@
-# A source xPack with Google Test
+# A source library xPack with Google Test
 
-This project provides the **Google Test** libraries as an xPack dependency.
+This project provides the **Google Test** source libraries as an xPack dependency.
 
 The project is hosted on GitHub as
 [xpack-3rd-party/googletest-xpack](https://github.com/xpack-3rd-party/googletest-xpack).
@@ -15,8 +15,8 @@ For maintainer infos, please see the
 
 ## Install
 
-As a source xPacks, the easiest way to add it to a project is via **xpm**,
-but it can also be used as any Git project, for example as a submodule.
+As a source library xPacks, the easiest way to add it to a project is via
+**xpm**, but it can also be used as any Git project, for example as a submodule.
 
 ### Prerequisites
 
