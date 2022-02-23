@@ -3,7 +3,7 @@
 build/
 ci/
 docs/
-tests/
+tests-xpack/
 googlemock/docs/
 googlemock/test/
 googletest/cmake/

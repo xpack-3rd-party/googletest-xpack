@@ -11,7 +11,7 @@ This page is addressed to developers who plan to include this package
 into their own projects.
 
 For maintainer infos, please see the
-[README-MAINTAINER](README-MAINTAINER.md) file.
+[README-MAINTAINER-XPACK](README-MAINTAINER-XPACK.md) file.
 
 ## Install
 
@@ -181,7 +181,7 @@ exe = executable(
 
 A simple example showing how to use the Google Test framework is
 presented below and is also available in
-[tests/src/sample-test.cpp](tests/src/sample-test.cpp).
+[tests-xpack/src/sample-test.cpp](tests-xpack/src/sample-test.cpp).
 
 ```c++
 #include "gtest/gtest.h"

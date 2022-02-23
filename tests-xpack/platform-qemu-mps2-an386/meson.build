@@ -13,7 +13,7 @@
 
 # Create the test applications.
 
-message('Processing tests/platform-qemu-mps2-an386...')
+message('Processing tests-xpack/platform-qemu-mps2-an386...')
 
 # -----------------------------------------------------------------------------
 

@@ -35,12 +35,12 @@ jobs:
           fetch-depth: 3
           submodules: true
       - name: 'Ubuntu latest x64 native xpm test-all'
-        run: bash tests/scripts/test-all.sh
+        run: bash tests-xpack/scripts/test-all.sh
       - name: 'Debian node:lts x64 docker xpm test-all'
         uses: docker://node:lts
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/tests/scripts/test-all.sh --image node:lts
+          args: /github/workspace/tests-xpack/scripts/test-all.sh --image node:lts
 
   linux-arm64:
     name: 'Linux arm64 tests'
@@ -54,12 +54,12 @@ jobs:
           fetch-depth: 3
           submodules: true
       - name: 'Raspberry Pi OS arm64 native xpm test-all'
-        run: bash tests/scripts/test-all.sh
+        run: bash tests-xpack/scripts/test-all.sh
       - name: 'Debian node:lts arm64 docker xpm test-all'
         uses: docker://node:lts
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/tests/scripts/test-all.sh --image node:lts
+          args: /github/workspace/tests-xpack/scripts/test-all.sh --image node:lts
 
   linux-arm32:
     name: 'Linux arm32 tests'
@@ -76,7 +76,7 @@ jobs:
         uses: docker://arm32v7/node:lts
         with:
           entrypoint: /usr/bin/linux32
-          args: /bin/bash /github/workspace/tests/scripts/test-all.sh --image arm32v7/node:lts
+          args: /bin/bash /github/workspace/tests-xpack/scripts/test-all.sh --image arm32v7/node:lts
       # Ubuntu 20.04 & Debian buster fail to install nvm
 
   macos-x64:
@@ -91,7 +91,7 @@ jobs:
           fetch-depth: 3
           submodules: true
       - name: 'macOS x64 native xpm test-all'
-        run: bash tests/scripts/test-all.sh
+        run: bash tests-xpack/scripts/test-all.sh
 
   macos-arm64:
     name: 'macOS arm64 tests'
@@ -108,7 +108,7 @@ jobs:
           fetch-depth: 3
           submodules: true
       - name: 'macOS arm64 native xpm test-all'
-        run: bash tests/scripts/test-all.sh
+        run: bash tests-xpack/scripts/test-all.sh
 
   windows-x64:
     name: 'Windows x64 tests'
@@ -122,6 +122,6 @@ jobs:
           fetch-depth: 3
           submodules: true
       - name: 'Windows x64 native xpm test-all'
-        run: bash tests/scripts/test-all.sh
+        run: bash tests-xpack/scripts/test-all.sh
 
 # -----------------------------------------------------------------------------

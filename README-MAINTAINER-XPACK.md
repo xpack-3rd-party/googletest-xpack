@@ -48,11 +48,11 @@ CppStyle plug-in.
 
 - select the `xpack-develop` branch
 - commit all changes
-- update versions in `README.md` and `README-MAINTAINER.md`
-- update `CHANGELOG.md`
+- update versions in `README-MAINTAINER-XPACK.md`
+- update `CHANGELOG-XPACK.md`
 - commit with a message like _prepare v1.11.0-1_
 - `npm pack` and check the content of the archive, which should list
-  only `package.json`, `README.md`, `LICENSE`, `CHANGELOG.md`,
+  only `package.json`, `README.md`, `LICENSE`, `CHANGELOG-XPACK.md`,
   the sources and CMake/meson files;
   possibly adjust `.npmignore`
 - `npm version v1.11.0-1`

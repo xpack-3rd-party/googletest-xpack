@@ -15,7 +15,7 @@ on:
       - '.gitignore'
       - '.npmignore'
       - '.github/workflows/test-all.yml'
-      - 'tests/scripts/**'
+      - 'tests-xpack/scripts/**'
     # tags-ignore: # Does not work, nothing triggers.
     #   - '**'
 

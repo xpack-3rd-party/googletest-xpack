@@ -11,7 +11,7 @@
 #
 # -----------------------------------------------------------------------------
 
-message(VERBOSE "Processing 'tests/platform-qemu-mps2-an386'...")
+message(VERBOSE "Processing 'tests-xpack/platform-qemu-mps2-an386'...")
 
 # -----------------------------------------------------------------------------
 
@@ -73,19 +73,19 @@ function(add_test_executable name)
   )
 
   # Include folders.
-  # `tests/platform-qemu-mps2-an386/include` was added globally.
+  # `tests-xpack/platform-qemu-mps2-an386/include` was added globally.
   target_include_directories(${name} PRIVATE
       "../include"
   )
 
-  message(VERBOSE "A+ -I tests/include")
+  message(VERBOSE "A+ -I tests-xpack/include")
 
   # Application sources.
   target_sources(${name} PRIVATE
       "../src/${name}.cpp"
   )
 
-  message(VERBOSE "A+ tests/src/${name}.cpp")
+  message(VERBOSE "A+ tests-xpack/src/${name}.cpp")
 
   target_compile_definitions(${name} PRIVATE
     # None

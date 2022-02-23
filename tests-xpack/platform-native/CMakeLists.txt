@@ -13,7 +13,7 @@
 
 # This file creates the platform specific test executables.
 
-message(VERBOSE "Processing 'tests/platform-native'...")
+message(VERBOSE "Processing 'tests-xpack/platform-native'...")
 
 # -----------------------------------------------------------------------------
 # Define the platform library.
@@ -64,7 +64,7 @@ function(add_test_executable name)
     "../include"
   )
 
-  message(VERBOSE "A+ -I tests/include")
+  message(VERBOSE "A+ -I tests-xpack/include")
 
   set_target_properties(${name} PROPERTIES OUTPUT_NAME "${name}")
 
@@ -73,7 +73,7 @@ function(add_test_executable name)
     "../src/${name}.cpp"
   )
 
-  message(VERBOSE "A+ tests/src/${name}.cpp")
+  message(VERBOSE "A+ tests-xpack/src/${name}.cpp")
 
   target_compile_definitions(${name} PRIVATE
     # None.
