@@ -224,7 +224,7 @@ main ([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
 ### Tests
 
 The project is fully tested via GitHub
-[Actions](https://github.com/micro-os-plus/micro-test-plus-xpack/actions/)
+[Actions](https://github.com/xpack-3rd-party/googletest-xpack/actions/)
 on each push.
 The test platforms are GNU/Linux, macOS and Windows, the tests are
 compiled with GCC, clang and arm-none-eabi-gcc and run natively or
@@ -238,7 +238,7 @@ platforms.
 The full set can be run manually with the following commands:
 
 ```sh
-cd ~Work/micro-test-plus-xpack.git
+cd ~Work/googletest-xpack.git
 
 xpm run install-all
 xpm run test-all
