@@ -73,7 +73,11 @@ into `xpack`.
 
 ### Overview
 
-This package provides the full Google Test & Mock code, and the
+This package provides the full Google Test & Mock code, but when
+installed via xpm the content is filtered and only the
+googletest & googlemock folders are used.
+
+In addition to the source files, the
 configuration files required to integrate it into
 CMake and meson projects, by building a static library.
 
