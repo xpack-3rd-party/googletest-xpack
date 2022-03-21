@@ -37,6 +37,8 @@ cd my-project
 xpm init # Unless a package.json is already present
 
 xpm install @xpack-3rd-party/googletest@latest
+
+ls -l xpacks/xpack-3rd-party-googletest
 ```
 
 ### Git submodule
