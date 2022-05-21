@@ -16,7 +16,7 @@
 #
 # `subdir('xpacks/xpack-3rd-party-googletest')`
 #
-# The result is a library that can be refered as:
+# The result is a library that can be referred as:
 #
 # ```
 #  c_args: xpack_3rd_party_googletest_dependency_c_args,
