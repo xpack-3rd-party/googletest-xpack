@@ -91,22 +91,19 @@ of code space.
 
 #### Include folders
 
-The following folders should be used during the build:
+The following folders should be passed to the compiler during the build:
 
 - `googletest/include`
 - `googlemock/include`
 
-The header files can then be included in user projects with statements like:
+The header files to be included in user projects are:
 
 ```c++
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
 ```
 
-#### Source folders
-
-- `googletest`
-- `googlemock`
+#### Source files
 
 The source file to be added to user projects are:
 
