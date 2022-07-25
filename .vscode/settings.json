@@ -10,6 +10,7 @@
     "cortexm",
     "ctest",
     "eabi",
+    "googletest",
     "minsize",
     "mkdir",
     "newlib",
@@ -21,5 +22,6 @@
     "xpack",
     "xpacks"
   ],
-  "cmake.configureOnOpen": false
+  "cmake.configureOnOpen": false,
+  "editor.wordWrap": "on"
 }
