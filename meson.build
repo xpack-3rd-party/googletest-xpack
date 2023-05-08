@@ -147,7 +147,7 @@ xpack_include_directories += [
 xpack_3rd_party_googletest_dependency = declare_dependency(
   include_directories: include_directories(xpack_include_directories),
   sources: files(),
-  compile_args: xpack_common_args
+  compile_args: xpack_common_args,
   dependencies: []
 )
 
