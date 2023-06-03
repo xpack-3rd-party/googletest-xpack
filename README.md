@@ -2,7 +2,7 @@
 [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/xpack-3rd-party/googletest-xpack)](https://github.com/xpack-3rd-party/googletest-xpack/tags/)
 [![npm (scoped)](https://img.shields.io/npm/v/@xpack-3rd-party/googletest.svg?color=blue)](https://www.npmjs.com/package/@xpack-3rd-party/googletest/)
 [![license](https://img.shields.io/github/license/xpack-3rd-party/googletest-xpack)](https://github.com/xpack-3rd-party/architecture-aarch32-xpack/blob/xpack/LICENSE)
-[![CI on Push](https://github.com/xpack-3rd-party/googletest-xpack/actions/workflows/CI.yml/badge.svg)](https://github.com/xpack-3rd-party/googletest-xpack/actions/workflows/CI.yml)
+[![CI on Push](https://github.com/xpack-3rd-party/googletest-xpack/actions/workflows/ci.yml/badge.svg)](https://github.com/xpack-3rd-party/googletest-xpack/actions/workflows/ci.yml)
 
 # A source library xPack with Google Test
 
