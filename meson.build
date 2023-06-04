@@ -14,7 +14,7 @@
 
 # This file is intended to be consumed by applications with:
 #
-# `subdir('xpacks/xpack-3rd-party-googletest')`
+# `subdir('xpacks/@xpack-3rd-party/googletest')`
 #
 # The result is a library that can be referred as:
 #
