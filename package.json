@@ -15,9 +15,9 @@
     "type": "git",
     "url": "https://github.com/xpack-3rd-party/googletest-xpack.git"
   },
-  "homepage": "https://github.com/xpack-3rd-party/googletest-xpack/",
+  "homepage": "https://github.com/xpack-3rd-party/googletest-xpack",
   "bugs": {
-    "url": "https://github.com/xpack-3rd-party/googletest-xpack/issues/"
+    "url": "https://github.com/xpack-3rd-party/googletest-xpack/issues"
   },
   "keywords": [
     "xpack",
@@ -28,12 +28,12 @@
   "author": {
     "name": "Liviu Ionescu",
     "email": "ilg@livius.net",
-    "url": "https://github.com/ilg-ul/"
+    "url": "https://github.com/ilg-ul"
   },
   "contributors": [
     {
       "name": "Google Inc.",
-      "url": "https://google.github.io/googletest/",
+      "url": "https://google.github.io/googletest",
       "license": "BSD-3-Clause"
     }
   ],
