@@ -4,7 +4,7 @@
 [![license](https://img.shields.io/github/license/xpack-3rd-party/googletest-xpack)](https://github.com/xpack-3rd-party/architecture-aarch32-xpack/blob/xpack/LICENSE)
 [![CI on Push](https://github.com/xpack-3rd-party/googletest-xpack/actions/workflows/ci.yml/badge.svg)](https://github.com/xpack-3rd-party/googletest-xpack/actions/workflows/ci.yml)
 
-# A source library xPack with Google Test
+# A source code library with Google Test
 
 This project provides the **Google Test** source library as an xPack dependency.
 
@@ -261,8 +261,8 @@ Tho original documentation is available on-line:
 
 ## License
 
-The original content is released under the
-[MIT License](https://opensource.org/licenses/MIT/),
+Unless otherwise stated, the content is released under the terms of the
+[MIT License](https://opensource.org/licenses/mit/),
 with all rights reserved to
 [Liviu Ionescu](https://github.com/ilg-ul).
 
